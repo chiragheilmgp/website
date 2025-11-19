@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEI — Center for Educational Initiatives</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASE STYLES */
+        :root {
+            --primary: #FF7A18;
+            --primary-dark: #303030;
+            --secondary-dark: #16130d;
+            --secondary: #FFD166;
+            --dark: #000000;
+            --background: #FDFBF7;
+            --text: #000000;
+            --white: #FFFFFF;
+            --white-text: #fdf8f2;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* SKIP LINK */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--text);
+            transition: var(--transition);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: var(--background);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .hero-logo {
+            height: 120px;
+            width: auto;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background-color: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .title {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* EDUCATION SECTION */
+        .education {
+            background-color: var(--background);
+        }
+
+        .paragraph-container {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .paragraph-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--secondary);
+        }
+
+        /* WORK SECTION */
+        .work {
+            background-color: var(--white);
+        }
+
+        .work-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            gap: 3rem;
+        }
+
+        .work-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .work-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .work-content {
+            flex: 1;
+        }
+
+        .work-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* REFERENCES SECTION */
+        .references {
+            background-color: var(--background);
+        }
+
+        .references-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reference-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .reference-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
+            color: var(--white-text);
+            padding: 3rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .donation-links {
+            list-style: none;
+        }
+
+        .donation-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .donation-links a {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .work-item,
+            .work-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header with navigation -->
+    <header>
+        <div class="nav-container">
+            <!-- Logo placeholder - Replace with your actual logo -->
+            <img src="logo.svg" alt="CEI - Center for Educational Initiatives" class="logo">
+            
+            <button class="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#work" class="nav-link">Our Work</a></li>
+                <li class="nav-item"><a href="#references" class="nav-link">References</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <!-- Logo placeholder - Replace with your actual logo -->
+                <img src="logo.svg" alt="CEI - Center for Educational Initiatives" class="hero-logo">
+                <h1>CEI — Center for Educational Initiatives</h1>
+                <p>Illuminating Every Mind</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>Who We Are</h2>
+                <p>The Center for Educational Initiatives (CEI) is dedicated to transforming education through innovative approaches that prioritize accessibility, engagement, and community involvement. Our mission is to bridge educational gaps and create opportunities for learners of all backgrounds.</p>
+                <p>Chiragh-e-Ilm aims to understand the education system and literacy rate in Pakistan through detailed research and analysis, explore different perspectives through varying means from groups including the general population, students, teachers, and professionals as to gain a broader understanding of educational challenges. and highlight the importance of interactive learning, a teaching approach that actively engages students, while identifying and introducing feasible ways to establish interactive learning, particularly in under-resourced classrooms.</p>
+                
+                <!-- Team Section -->
+                <div class="team-grid">
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <!-- Team member image placeholder - Replace with actual images -->
+                        <img src="team1.jpg" alt="Team member" class="team-img">
+                        <div class="team-info">
+                            <h3>Murtaza Nayyar</h3>
+                            <p class="title">Team Leader</p>
+                            <p>Media management <br>Survey Creation<br>Presentation Design<br>Pamphlet Design</p>
+                            <a href="https://www.instagram.com/2100sman/" aria-label="Instagram profile of Dr. Sarah Johnson">Instagram</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <!-- Team member image placeholder - Replace with actual images -->
+                        <img src="team2.jpg" alt="Team member" class="team-img">
+                        <div class="team-info">
+                            <h3>Qaim Raza</h3>
+                            <p class="title">Team Member</p>
+                            <p>Media management <br> Online Research <br> Website Development <br> Outreach </p>
+                            <a href="https://www.instagram.com/_trarai/" aria-label="Instagram profile of Michael Chen">Instagram</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <!-- Team member image placeholder - Replace with actual images -->
+                        <img src="team3.jpg" alt="Team member" class="team-img">
+                        <div class="team-info">
+                            <h3>Sarim Khan</h3>
+                            <p class="title">Team Member</p>
+                            <p>Documentation <br> Online Research <br> Interview Conduction<br> Soft-board Design </p>
+                            <a href="https://www.instagram.com/sarimkhann2010" aria-label="Instagram profile of Amira Hassan">Instagram</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="team-card">
+                        <!-- Team member image placeholder - Replace with actual images -->
+                        <img src="team4.jpg" alt="Team member" class="team-img">
+                        <div class="team-info">
+                            <h3>Syed Ali Naqvi</h3>
+                            <p class="title">Team Member</p>
+                            <p>General Writing <br> Online Research<br> Interview Conduction </p>
+                            <a href="https://www.instagram.com/murt.wi3" aria-label="Instagram profile of David Rodriguez">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education">
+            <div class="container">
+                <h2>Educational Overview</h2>
+                
+                <!-- Paragraph 1 -->
+                <div class="paragraph-container">
+                    <p>The Importance Of Education:<br><br>
+
+It's easy to understand why education is regarded as a basic human right and something that every man, woman, and child deserves. It serves as the foundation of progress, as without education, there can be no commerce, construction, or governance. According to the World Bank, education forms a core pillar for job creation and economic growth. The world continues to advance technologically because of educated and innovative individuals who
+use their knowledge to create new ideas and developments. <br><br>
+
+Thus, it makes it even more tragic that, according to UNICEF, around 600 million children worldwide still lack access to education. Without education there are many who they may never have the chance to reach their potential or pursue their ambitions. This limits individuals and also contributes to long- term underdevelopment, keeping many developing and third-world nations
+economically stagnant.</p>
+                </div>
+                
+                <!-- Paragraph 2 -->
+                <div class="paragraph-container">
+                    <p>Education In Pakistan Compared To Other Nations: <br><br>
+
+Education has always been central to human progress. From ancient philosophers like Aristotle to the innovators of the Indo-Pak subcontinent who pioneered algebra and algorithms, knowledge has shaped the world we live in today. 
+                    
+Yet, it is concerning that Pakistan's average IQ is reported to be 93, while comparatively Singapore stands at 105, with Finland's at 100. Moreover the literacy rate of Pakistan is estimated to be around 60% while the literacy rate of Singapore is at 97.5%, and Finland at 100%. 
+
+It is easy to infer that Pakistan's education sector is lacking in comparison to other nations. Among major issues include outdated teaching methods, lack of trained teachers, and limited access to modern learning resources, one of the biggest challenges facing Pakistan's education system is the limited funding it
+receives. 
+
+Additionally only about 0.8% of the country's GDP is spent on education a figure far lower than global standards. This shortage of resources makes it difficult to improve infrastructure, train teachers, and provide quality learning materials, especially in low-income and rural areas.</p>
+                </div>
+
+                <div class="paragraph-container">
+                    <p>Interactive Learning:<br><br>
+
+Interactive learning is a teaching approach that actively involves students in the learning process through activities like group discussions, visual learning and activity based learning. So it is a method which contrasts with traditional lectures by emphasizing student participation and collaboration. <br><br>
+
+Even within resource limited environments, interactive learning is a viable and effective strategy. Research shows that students participating in interactive learning demonstrate a 6% general improvement in test scores, reflecting deeper understanding and critical thinking. Additionally, the implementation of active learning strategies has led to about a 30% reduction in achievement gaps on examinations, highlighting its potential to create more educational outcomes. By fostering an interactive classroom environment, educators can improve student motivation, promote critical thinking, and improve academic performance, even in settings with limited resources.</p>
+                </div>
+
+                <div class="paragraph-container">
+                    <p>Interactive Learning, Across Cultures: <br><br>
+
+Interactive learning is widely recognized as a method to actively engage students and improve their understanding. Different countries have implemented it in unique ways, reflecting their cultural and educational contexts. <br><br>
+
+In Finland, classrooms focus on student-centered, hands-on approaches. For example, the Moving Maths study introduced physical activity into math lessons, helping students stay engaged while improving their academic performance. Another approach includes collaborative group projects, which allow students to solve problems together, fostering teamwork and critical thinking. 
+<br><br>
+In Singapore, interactive learning is applied through experiential methods. Field trips and museum visits, such as at the MINT Museum of Toys, provide hands-on experiences where students can actively engage with exhibits and apply what they have learned. Additionally, group discussions and role-playing activities are regularly used in classrooms to encourage participation and improve comprehension, demonstrating how impactful interactive
+learning can prove to be when implemented thoughtfully</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work Section -->
+        <section id="work" class="work">
+            <div class="container">
+                <h2>Our Work</h2>
+                
+                <!-- Interviews -->
+                <div class="work-item">
+                    <div class="work-img">
+                        <!-- Interview image placeholder - Replace with actual images -->
+                        <img src="interviews.webp" alt="Educational interviews" loading="lazy">
+                    </div>
+                    <div class="work-content">
+                        <h3>Interview</h3>
+                        <p> Team Chiragh-e-Ilm conducted an interview with Syed Akbar Ali, the Director of Literacy at the National Commission for Human Development (NCHD) Pakistan, to gain insights into Pakistan's education system and the issue of illiteracy. With approximately 13-14 years of experience working with the government, he provided us with a valuable perspective on national literacy initiatives and shared his in-depth understanding of efforts aimed at improving access to education across the country.</p>
+                    </div>
+                </div>
+                
+                <!-- Surveys -->
+                <div class="work-item">
+                    <div class="work-img">
+                        <!-- Survey image placeholder - Replace with actual images -->
+                        <img src="surveys.webp" alt="Educational surveys" loading="lazy">
+                    </div>
+                    <div class="work-content">
+                        <h3>Surveys</h3>
+                        <p>Chiragh-e-lIm conducted both a paper-based survey as well as an online survey. The paper-based survey was aimed towards teachers, primarily taking place at Beaconhouse Margalla Campus, to gather insights on key aspects of education, including access for all, resources provision, and the use of interactive teaching methods. This survey aimed to understand educators perspectives on these areas, and garner data. 
+
+On the other hand, the online survey was conducted to gather varying opinions on educational access, literacy, and interactive learning. Responses were collected from participants across multiple regions, including Pakistan, Southeast Asia, Africa and others. The survey aimed to understand the general perceptions of barriers to education, responsibility
+for reform, and the role of innovative teaching methods.</p>
+                        <!-- Survey charts/graphs gallery -->
+                        <div class="gallery">
+                            <img src="chart1.webp" alt="Survey results chart 1" class="gallery-img" loading="lazy">
+                            <img src="chart2.webp" alt="Survey results chart 2" class="gallery-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visits / Boards / Pamphlets -->
+                <div class="work-item">
+                    <div class="work-img">
+                        <!-- Visit image placeholder - Replace with actual images -->
+                        <img src="pamphlet1.webp" alt="School visits" loading="lazy">
+                    </div>
+                    <div class="work-content">
+                        <h3>Action</h3>
+                        <p>Chiragh-e-lIm distributed teacher guide pamphlets in the government-affiliated public school, "Islamabad Model School For Boys", outlining the concept and benefits of interactive learning methods including activity based, visual and peer learning. The aim of this specific activity was primarily to raise awareness in teachers regarding how they can enhance engagement and understanding in their classes by introducing interactive learning and to discuss how these approaches can be effectively implemented in resource-constrained environments.<br><br>
+
+To practically demonstrate our aims of promoting interactive learning, we collaborated with the students of the government-affiliated, public school, "Islamabad Model School for Boys" to make a soft-board. Students were given the autonomy to design the board themselves, encouraging creativity and ownership of their learning. We provided them with readily available materials, as well as printouts of interactive games and tasks they could complete, to function as visual aids, illustrating how teachers can incorporate similar low-cost, engaging methods into their classrooms, even with limited resources or funding.
+<br><br>To achieve our aim of potentially seeing nationwide changes to the education system, we sent a formal email to the Federal Minister of Education, where we emphasized the need for equal access to engaging learning across Pakistan. Our message not only highlighted the country's low literacy rate and dependence on rote learning especially when it comes to underfunded schools, rather It also discussed the benefits of adopting interactive and activity-based learning to make education more accessible, inclusive and effective for all students. Moreover the letter further suggested teacher training and curriculum reforms to
+bridge national learning disparity.</p>
+                        <!-- Photo gallery -->
+                        <div class="gallery">
+                            <img src="visit1.webp" alt="School visit 1" class="gallery-img" loading="lazy">
+                            <img src="board1.webp" alt="Education board" class="gallery-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- References Section -->
+        <section id="references" class="references">
+            <div class="container">
+                <h2>References & Sources</h2>
+               <div class="references-list">
+
+                <div class="reference-item">
+                    <p>Oxford English Dictionary – Definition of Education</p>
+                    <p>Link: <a href="https://www.oed.com/dictionary/education_n?tab=factsheet#5743712" target="_blank">https://www.oed.com/dictionary/education_n?tab=factsheet#5743712</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>World Bank – Education Overview</p>
+                    <p>Link: <a href="https://www.worldbank.org/en/topic/education/overview" target="_blank">https://www.worldbank.org/en/topic/education/overview</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>UNICEF – Education</p>
+                    <p>Link: <a href="https://www.unicef.org/education" target="_blank">https://www.unicef.org/education</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>World Population Review – Average IQ by Country</p>
+                    <p>Link: <a href="https://worldpopulationreview.com/country-rankings/average-iq-by-country" target="_blank">https://worldpopulationreview.com/country-rankings/average-iq-by-country</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>World Population Review – Literacy Rate by Country</p>
+                    <p>Link: <a href="https://worldpopulationreview.com/country-rankings/literacy-rate-by-country" target="_blank">https://worldpopulationreview.com/country-rankings/literacy-rate-by-country</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>Dawn News – Education Related Article</p>
+                    <p>Link: <a href="https://www.dawn.com/news/1916136" target="_blank">https://www.dawn.com/news/1916136</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>Engageli – Active Learning Statistics 2025</p>
+                    <p>Link: <a href="https://www.engageli.com/blog/active-learning-statistics-2025" target="_blank">https://www.engageli.com/blog/active-learning-statistics-2025</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>JAMK – Moving Maths Project</p>
+                    <p>Link: <a href="https://www.jamk.fi/en/project/moving-maths" target="_blank">https://www.jamk.fi/en/project/moving-maths</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>TechClass – Innovative Practices in Finnish Schools</p>
+                    <p>Link: <a href="https://www.techclass.com/resources/education-insights/10-innovative-educational-practices-from-finnish-schools?srsltid=AfmBOooKkA4E7cRUmOhGBJb_WdN8Y5N9mZSZzjQP87POvEiFGnELqU8D" target="_blank">https://www.techclass.com/resources/education-insights/10-innovative-educational-practices-from-finnish-schools?srsltid=AfmBOooKkA4E7cRUmOhGBJb_WdN8Y5N9mZSZzjQP87POvEiFGnELqU8D</a></p>
+                </div>
+
+                <div class="reference-item">
+                    <p>Emint – Learning Journey</p>
+                    <p>Link: <a href="https://emint.com/learning-journey/" target="_blank">https://emint.com/learning-journey/</a></p>
+                </div>
+
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            
+            <!-- Suggestion Box -->
+            <div class="footer-section">
+                <h3>Get In Touch</h3>
+                <p>We value your feedback and suggestions. Share your ideas with us!</p>
+                <button class="btn" id="suggestion-btn" style="margin-top: 1rem;">Suggestion Box</button>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@cei-education.org</p>
+                <p>Phone: +92 300 123 4567</p>
+                <p>Address: Education Street, Islamabad, Pakistan</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 CEI — Center for Educational Initiatives. All rights reserved.</p>
+            <p>Made by CEI Team</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" aria-label="Back to top">
+        ↑
+    </div>
+
+    <!-- Suggestion Modal -->
+    <div class="modal" id="suggestion-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Suggestion Box</h2>
+            <form id="suggestion-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Suggestion</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // CEI Configuration Object
+        const CEI = {
+            orgName: "CEI — Center for Educational Initiatives",
+            description: "Empowering education through research, innovation, and community engagement.",
+            nav: ["About Us", "Our Work", "References"],
+            palette: {
+                primary: "#FF7A18",
+                secondary: "#FFD166",
+                text: "#000000",
+                background: "#FDFBF7"
+            },
+            formAction: "https://example.com/suggestions",
+            donationLinks: [
+                { name: "UNICEF", url: "https://www.unicef.org/donate" },
+                { name: "Malala Fund", url: "https://malala.org/donate" }
+            ]
+        };
+
+        // DOM Elements
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const backToTop = document.querySelector('.back-to-top');
+        const suggestionBtn = document.getElementById('suggestion-btn');
+        const suggestionModal = document.getElementById('suggestion-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const suggestionForm = document.getElementById('suggestion-form');
+
+        // Mobile Menu Toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Back to Top Button
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Suggestion Modal
+        suggestionBtn.addEventListener('click', () => {
+            suggestionModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            suggestionModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === suggestionModal) {
+                suggestionModal.classList.remove('active');
+            }
+        });
+
+        // Form Submission
+        suggestionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Basic form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // In a real implementation, you would send this data to a server
+                alert('Thank you for your suggestion! We appreciate your feedback.');
+                suggestionForm.reset();
+                suggestionModal.classList.remove('active');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Scrollspy for navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // You can use the CEI config object to dynamically populate content if needed
+            console.log('CEI Website Initialized:', CEI.orgName);
+        });
+    </script>
+</body>
+</html>
